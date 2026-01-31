@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Генератор анкеты для flamevector.rusff.me</title>
+<style>
+@font-face { font-family:'Cinzel'; src:url('https://raw.githubusercontent.com/tukiteruamano-a11y/anketa/main/cinzel_regular.ttf'); }
+
+/* ОБЁРТКИ */
+body { background:#f0f0f0; margin:0; padding:20px; font-family:'Cinzel', serif; }
+.weekly-wrapper { width:900px; margin:30px auto; padding:5px; }
+.weekly-bg { padding:10px; background:url(https://i.ibb.co/0xP0jH4/6bbf97e48d3c1d7905e6169de8564e74.jpg) repeat; border-radius:15px; }
+.weekly-inner { background:#c7c7c7; padding:20px; border-radius:15px; font-family:'Cinzel', serif; }
+
+/* Заголовок формы */
+.form-title { text-align:center; font-size:28px; color:#fff; margin-bottom:20px; text-shadow: 1px 1px 2px #000; }
+
+/* Метки и поля формы */
+label { display:block; font-weight:bold; margin-top:10px; color:#333; }
+input, textarea { width:100%; padding:8px; border-radius:10px; border:1px solid #a9a9a9; margin-top:5px; font-family:inherit; font-size:14px; box-sizing:border-box; background:#f9f9f9; }
+
+/* Кнопка */
+button { margin-top:15px; padding:10px; width:100%; background:#4CAF50; color:white; border:none; border-radius:10px; font-size:16px; cursor:pointer; font-family:inherit; }
+button:hover { background:#45a049; }
+
+/* Сгенерированный код */
+#output { margin-top:15px; font-family:monospace; padding:10px; border-radius:10px; border:1px solid #a9a9a9; resize:vertical; background:#eee; }
+
+/* Немного тени для блоков */
+input, textarea, button { box-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+</style>
+</head>
+<body>
+
+<div class="weekly-wrapper">
+  <div class="weekly-bg">
+    <div class="weekly-inner">
+      <h2 class="form-title">Генератор анкеты для flamevector.rusff.me</h2>
+
+      <label>Полное имя и возраст:</label>
+      <input type="text" id="fullName">
+
+      <label>Фото 1 URL:</label>
+      <input type="text" id="photo1">
+
+      <label>Фото 2 URL:</label>
+      <input type="text" id="photo2">
+
+      <label>FC:</label>
+      <input type="text" id="fc">
+
+      <label>Родственники/связи (каждого в новой строке, формат: Имя — связь):</label>
+      <textarea id="relatives" rows="4"></textarea>
+
+      <label>Биография (Enter = новый абзац):</label>
+      <textarea id="bio" rows="5"></textarea>
+
+      <label>Особые умения / Дополнительно (Enter = новый абзац):</label>
+      <textarea id="skills" rows="4"></textarea>
+
+      <label>Отношение к вирусу (Enter = новый абзац):</label>
+      <textarea id="virus" rows="3"></textarea>
+
+      <label>Связь с вами:</label>
+      <input type="text" id="contact">
+
+      <button onclick="generateCode()">Сгенерировать код</button>
+
+      <h3>Сгенерированный код:</h3>
+      <textarea id="output" rows="15"></textarea>
+    </div>
+  </div>
+</div>
+
+<script>
+function generateCode() {
+  const name = document.getElementById('fullName').value.trim();
+  const photo1 = document.getElementById('photo1').value.trim();
+  const photo2 = document.getElementById('photo2').value.trim();
+  const fc = document.getElementById('fc').value.trim();
+  const relativesRaw = document.getElementById('relatives').value.trim();
+  const bioRaw = document.getElementById('bio').value.trim();
+  const skillsRaw = document.getElementById('skills').value.trim();
+  const virusRaw = document.getElementById('virus').value.trim();
+  const contact = document.getElementById('contact').value.trim();
+
+  const relatives = relativesRaw.split('\n').map(r => `<li>${r}</li>`).join('\n');
+  const bio = bioRaw.split('\n').map(p => `<p>${p}</p>`).join('\n');
+  const skills = skillsRaw.split('\n').map(p => `<p>${p}</p>`).join('\n');
+  const virus = virusRaw.split('\n').map(p => `<p>${p}</p>`).join('\n');
+
+  const code = `[hideprofile][html]
+<div class="weekly-wrapper">
+  <div class="weekly-bg">
+    <div class="weekly-inner">
+      <div class="section-box header-box">
+        <h1>${name}</h1>
+      </div><br>
+
+      <div class="images">
+        <img src="${photo1}" alt="Фото 1">
+        <img src="${photo2}" alt="Фото 2">
+      </div>
+
+      <p class="fc">fc: ${fc}</p>
+
+      <div class="section-box"><h2>РОДСТВЕННИКИ, СВЯЗИ</h2></div>
+      <div class="text-box">
+        <ul class="relatives">
+          ${relatives}
+        </ul>
+      </div>
+
+      <div class="section-box"><h2>БИОГРАФИЯ</h2></div>
+      <div class="text-box">
+        ${bio}
+      </div>
+
+      <div class="section-box"><h2>ОСОБЫЕ УМЕНИЯ, ДОПОЛНИТЕЛЬНО</h2></div>
+      <div class="text-box">
+        ${skills}
+      </div>
+
+      <div class="section-box"><h2>ОТНОШЕНИЕ К ВИРУСУ</h2></div>
+      <div class="text-box">
+        ${virus}
+      </div>
+
+      <p class="contact"><strong>СВЯЗЬ С ВАМИ:</strong> ${contact}</p>
+
+    </div>
+  </div>
+</div>
+
+<style>
+@font-face { font-family:'Cinzel'; src:url('https://raw.githubusercontent.com/tukiteruamano-a11y/anketa/main/cinzel_regular.ttf'); }
+.weekly-wrapper { width:850px; margin:auto; padding:5px; }
+.weekly-bg { padding:5px; background:url(https://i.ibb.co/0xP0jH4/6bbf97e48d3c1d7905e6169de8564e74.jpg) repeat; border-radius:10px; }
+.weekly-inner { background:#c7c7c7; padding:15px; border-radius:10px; font-family:'Cinzel', serif; font-size:14px; }
+.images { text-align:center; margin-bottom:15px; }
+.images img { width:230px; height:230px; object-fit:cover; border-radius:15px; margin:0 10px; }
+.fc { text-align:center; font-style:italic; margin-bottom:20px; }
+.section-box { background:url(https://i.ibb.co/0xP0jH4/6bbf97e48d3c1d7905e6169de8564e74.jpg) repeat; border-radius:20px; padding:3px; text-align:center; margin-top:20px; color:#c7c7c7; font-size:25px; }
+.section-box h1, .section-box h2 { margin:0; padding:0; }
+.text-box { border:1px solid #a9a9a9; border-radius:10px; padding:10px; margin-top:5px; text-align:justify; text-indent:25px; font-size:14px; }
+.relatives { list-style:none; padding-left:0; margin-left:20px; }
+.relatives li { margin-bottom:5px; }
+.contact { text-align:center; font-size:16px; margin-top:20px; }
+</style>
+[/html]`;
+
+  document.getElementById('output').value = code;
+}
+</script>
