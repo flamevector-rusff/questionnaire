@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Генератор анкеты для FlameVector</title>
+<title>Генератор анкеты для flamevector.rusff.me</title>
 <style>
 @font-face { font-family:'Cinzel'; src:url('https://raw.githubusercontent.com/tukiteruamano-a11y/anketa/main/cinzel_regular.ttf'); }
 
@@ -19,9 +19,23 @@ body { background:#f0f0f0; margin:0; padding:20px; font-family:'Cinzel', serif; 
 label { display:block; font-weight:bold; margin-top:10px; color:#333; }
 input, textarea { width:100%; padding:8px; border-radius:10px; border:1px solid #a9a9a9; margin-top:5px; font-family:inherit; font-size:14px; box-sizing:border-box; background:#f9f9f9; resize:vertical; }
 
-/* Кнопки */
-button { margin-top:15px; padding:10px; width:100%; background:#4CAF50; color:white; border:none; border-radius:10px; font-size:16px; cursor:pointer; font-family:inherit; }
-button:hover { background:#45a049; }
+/* Кнопки с фоновой картинкой */
+button {
+  margin-top:15px;
+  padding:10px;
+  width:100%;
+  border:none;
+  border-radius:10px;
+  font-size:16px;
+  cursor:pointer;
+  font-family:inherit;
+  color:#fff;
+  text-shadow: 1px 1px 2px #000;
+  background:url(https://i.ibb.co/0xP0jH4/6bbf97e48d3c1d7905e6169de8564e74.jpg) repeat;
+  background-size:cover;
+  transition: opacity 0.3s;
+}
+button:hover { opacity:0.8; }
 
 /* Сгенерированный код */
 #output { margin-top:15px; font-family:monospace; padding:10px; border-radius:10px; border:1px solid #a9a9a9; resize:vertical; background:#eee; width:100%; overflow:auto; }
