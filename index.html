@@ -2,32 +2,39 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Генератор анкеты для flamevector.rusff.me</title>
+<title>Генератор анкеты flamevector.rusff.me</title>
 <style>
 @font-face { font-family:'Cinzel'; src:url('https://raw.githubusercontent.com/tukiteruamano-a11y/anketa/main/cinzel_regular.ttf'); }
 
-/* ОБЁРТКИ */
 body { background:#f0f0f0; margin:0; padding:20px; font-family:'Cinzel', serif; }
 .weekly-wrapper { width:900px; margin:30px auto; padding:5px; }
 .weekly-bg { padding:10px; background:url(https://i.ibb.co/0xP0jH4/6bbf97e48d3c1d7905e6169de8564e74.jpg) repeat; border-radius:15px; }
 .weekly-inner { background:#c7c7c7; padding:20px; border-radius:15px; font-family:'Cinzel', serif; }
 
-/* Заголовок формы */
+/* Заголовок */
 .form-title { text-align:center; font-size:28px; color:#fff; margin-bottom:20px; text-shadow: 1px 1px 2px #000; }
 
-/* Метки и поля формы */
-label { display:block; font-weight:bold; margin-top:10px; color:#333; }
+/* Секции */
+.section-box { background:url(https://i.ibb.co/0xP0jH4/6bbf97e48d3c1d7905e6169de8564e74.jpg) repeat; border-radius:20px; padding:10px; text-align:center; margin-top:20px; color:#c7c7c7; font-size:25px; }
+.section-box h2 { margin:0; padding:0; }
+
+/* Поля внутри блоков */
+.text-box { border:1px solid #a9a9a9; border-radius:10px; padding:10px; margin-top:5px; text-align:justify; text-indent:25px; font-size:14px; background:#eee; }
 input, textarea { width:100%; padding:8px; border-radius:10px; border:1px solid #a9a9a9; margin-top:5px; font-family:inherit; font-size:14px; box-sizing:border-box; background:#f9f9f9; }
 
-/* Кнопка */
+/* Кнопки */
 button { margin-top:15px; padding:10px; width:100%; background:#4CAF50; color:white; border:none; border-radius:10px; font-size:16px; cursor:pointer; font-family:inherit; }
 button:hover { background:#45a049; }
 
 /* Сгенерированный код */
 #output { margin-top:15px; font-family:monospace; padding:10px; border-radius:10px; border:1px solid #a9a9a9; resize:vertical; background:#eee; }
 
-/* Немного тени для блоков */
-input, textarea, button { box-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+/* Списки */
+.relatives { list-style:none; padding-left:0; margin-left:20px; }
+.relatives li { margin-bottom:5px; }
+
+/* Контакты */
+.contact { text-align:center; font-size:16px; margin-top:20px; }
 </style>
 </head>
 <body>
@@ -35,36 +42,51 @@ input, textarea, button { box-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
 <div class="weekly-wrapper">
   <div class="weekly-bg">
     <div class="weekly-inner">
-      <h2 class="form-title">Генератор анкеты для <a href="https://flamevector.rusff.me/">Flame Vector</a></h2>
+      <h2 class="form-title">Генератор анкеты flamevector.rusff.me</h2>
 
-      <label>Полное имя и возраст:</label>
-      <input type="text" id="fullName">
+      <div class="section-box"><h2>ПОЛНОЕ ИМЯ И ВОЗРАСТ</h2></div>
+      <div class="text-box">
+        <input type="text" id="fullName" placeholder="Например: Иван Иванов, 25 лет">
+      </div>
 
-      <label>Фото 1 URL:</label>
-      <input type="text" id="photo1">
+      <div class="section-box"><h2>ФОТОГРАФИИ</h2></div>
+      <div class="text-box">
+        <input type="text" id="photo1" placeholder="URL Фото 1">
+        <input type="text" id="photo2" placeholder="URL Фото 2" style="margin-top:10px;">
+      </div>
 
-      <label>Фото 2 URL:</label>
-      <input type="text" id="photo2">
+      <div class="section-box"><h2>FC</h2></div>
+      <div class="text-box">
+        <input type="text" id="fc" placeholder="Прототип внешности">
+      </div>
 
-      <label>FC:</label>
-      <input type="text" id="fc">
+      <div class="section-box"><h2>РОДСТВЕННИКИ / СВЯЗИ</h2></div>
+      <div class="text-box">
+        <textarea id="relatives" rows="4" placeholder="Каждого в новой строке, формат: Имя — связь"></textarea>
+      </div>
 
-      <label>Родственники/связи (каждого в новой строке, формат: Имя — связь):</label>
-      <textarea id="relatives" rows="4"></textarea>
+      <div class="section-box"><h2>БИОГРАФИЯ</h2></div>
+      <div class="text-box">
+        <textarea id="bio" rows="5" placeholder="Текст биографии. Enter = новый абзац"></textarea>
+      </div>
 
-      <label>Биография (Enter = новый абзац):</label>
-      <textarea id="bio" rows="5"></textarea>
+      <div class="section-box"><h2>ОСОБЫЕ УМЕНИЯ / ДОПОЛНИТЕЛЬНО</h2></div>
+      <div class="text-box">
+        <textarea id="skills" rows="4" placeholder="Текст навыков. Enter = новый абзац"></textarea>
+      </div>
 
-      <label>Особые умения / Дополнительно (Enter = новый абзац):</label>
-      <textarea id="skills" rows="4"></textarea>
+      <div class="section-box"><h2>ОТНОШЕНИЕ К ВИРУСУ</h2></div>
+      <div class="text-box">
+        <textarea id="virus" rows="3" placeholder="Текст. Enter = новый абзац"></textarea>
+      </div>
 
-      <label>Отношение к вирусу (Enter = новый абзац):</label>
-      <textarea id="virus" rows="3"></textarea>
-
-      <label>Связь с вами:</label>
-      <input type="text" id="contact">
+      <div class="section-box"><h2>СВЯЗЬ С ВАМИ</h2></div>
+      <div class="text-box">
+        <input type="text" id="contact" placeholder="Контактная информация">
+      </div>
 
       <button onclick="generateCode()">Сгенерировать код</button>
+      <button onclick="copyCode()">Скопировать код</button>
 
       <h3>Сгенерированный код:</h3>
       <textarea id="output" rows="15"></textarea>
@@ -96,38 +118,20 @@ function generateCode() {
       <div class="section-box header-box">
         <h1>${name}</h1>
       </div><br>
-
       <div class="images">
         <img src="${photo1}" alt="Фото 1">
         <img src="${photo2}" alt="Фото 2">
       </div>
-
       <p class="fc">fc: ${fc}</p>
-
       <div class="section-box"><h2>РОДСТВЕННИКИ, СВЯЗИ</h2></div>
-      <div class="text-box">
-        <ul class="relatives">
-          ${relatives}
-        </ul>
-      </div>
-
+      <div class="text-box"><ul class="relatives">${relatives}</ul></div>
       <div class="section-box"><h2>БИОГРАФИЯ</h2></div>
-      <div class="text-box">
-        ${bio}
-      </div>
-
+      <div class="text-box">${bio}</div>
       <div class="section-box"><h2>ОСОБЫЕ УМЕНИЯ, ДОПОЛНИТЕЛЬНО</h2></div>
-      <div class="text-box">
-        ${skills}
-      </div>
-
+      <div class="text-box">${skills}</div>
       <div class="section-box"><h2>ОТНОШЕНИЕ К ВИРУСУ</h2></div>
-      <div class="text-box">
-        ${virus}
-      </div>
-
+      <div class="text-box">${virus}</div>
       <p class="contact"><strong>СВЯЗЬ С ВАМИ:</strong> ${contact}</p>
-
     </div>
   </div>
 </div>
@@ -147,8 +151,16 @@ function generateCode() {
 .relatives li { margin-bottom:5px; }
 .contact { text-align:center; font-size:16px; margin-top:20px; }
 </style>
-[/html]`;
+[/html][/hideprofile]`;
 
   document.getElementById('output').value = code;
+}
+
+function copyCode() {
+  const output = document.getElementById('output');
+  output.select();
+  output.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  alert("Код скопирован в буфер обмена!");
 }
 </script>
